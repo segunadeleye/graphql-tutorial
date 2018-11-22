@@ -1,13 +1,17 @@
 module Types
   class QueryType < Types::BaseObject
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
+    field :allLinks, [LinkType], null: false, description: 'Fetch all links'
+    field :link, LinkType, null: true do
+      description 'Fetch link'
+      argument :id, ID, required: true
+    end
 
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World!"
+    def all_links
+      Link.all
+    end
+
+    def link(id:)
+      Link.find(id)
     end
   end
 end
