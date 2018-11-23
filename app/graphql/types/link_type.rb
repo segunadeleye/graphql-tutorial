@@ -6,5 +6,6 @@ module Types
     field :url, String, null: false
     field :description, String, null: false
     field :postedBy, UserType, method: :user, null: true
+    field :votes, [VoteType], null: false
   end
 end
